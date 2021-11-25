@@ -1,6 +1,7 @@
 public class CoinsCounter extends Thread {
-    int coinValue;
-    int numberOfCoins;
+    private int coinValue;
+    private int numberOfCoins;
+    private int counted;
 
     CoinsCounter(int coinValue, int numberOfCoins) {
         this.numberOfCoins = numberOfCoins;
@@ -8,17 +9,26 @@ public class CoinsCounter extends Thread {
     }
 
     public void run() {
-        for(int i = 1; i <= this.numberOfCoins; ++i) {
-            int inserted = this.coinValue * i;
-            System.out.println("внесено: " + inserted);
-
+        for (int i = 1; i <= numberOfCoins; ++i) {
+            counted = coinValue * i;
+            System.out.println("внесено: " + counted);
             try {
-                Thread.sleep(500L);
+                Thread.sleep(20L);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
         }
+        // Использован конечный цикл, чтобы программа завершалась.
+        // Хотя по логике вывод цен и внесенной суммы может продолжаться "вечно"
+        for (int n = 0; n <= 12; n++) {
+            try {
+                System.out.println("внесено: " + counted);
+                Thread.sleep(1500L);
+            } catch (InterruptedException en) {
+                en.printStackTrace();
+            }
 
-        System.out.println("Внесенные монеты посчитаны");
+
+        }
     }
 }
